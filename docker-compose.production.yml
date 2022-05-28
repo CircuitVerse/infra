@@ -1,0 +1,43 @@
+version: "3.9" # optional since v1.27.0
+services:
+  web:
+    image: caddy:2.5.1-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - $PWD/site:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - app
+  app:
+    environment:
+      DATABASE_URL: $DATABASE_URL
+      REDIS_URL: $REDIS_URL
+      SECRET_KEY_BASE: $SECRET_KEY_BASE
+      YOSYS_PATH: 'http://yosys:3040'
+    image: ghcr.io/circuitverse/circuitverse:master
+    command: bundle exec puma
+    restart: always
+    ports:
+      - "3000:3000"
+
+  worker:
+    environment:
+      DATABASE_URL: $DATABASE_URL
+      REDIS_URL: $REDIS_URL
+      SECRET_KEY_BASE: $SECRET_KEY_BASE
+      YOSYS_PATH: 'http://yosys:3040'
+    image: ghcr.io/circuitverse/circuitverse:master
+    restart: always
+    command: bundle exec sidekiq
+
+  yosys:
+    image: ghcr.io/circuitverse/yosys2digitaljs-server:master
+volumes:
+  caddy_data:
+    external: false
+  caddy_config:

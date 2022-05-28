@@ -1,0 +1,26 @@
+http://circuitverse.org {
+	encode gzip zstd
+	root * /home/ubuntu/main/CircuitVerse/public
+	@notStatic {
+		not file
+	}
+	reverse_proxy @notStatic app:3000
+	file_server
+	reverse_proxy / app:3000
+	log {
+		output file /var/log/caddy/access.log
+	}
+}
+localhost {
+	encode gzip zstd
+	root * /home/ubuntu/main/CircuitVerse/public
+	@notStatic {
+		not file
+	}
+	reverse_proxy @notStatic app:3000
+	file_server
+	reverse_proxy / app:3000
+	log {
+		output file /var/log/caddy/access.log
+	}
+}
