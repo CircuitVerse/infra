@@ -1,4 +1,4 @@
-set daemon  120              # check services at 11 seconds intervals
+set daemon  120              # check services at 120 seconds intervals
 #   with start delay 240    # optional: delay the first check by 4-minutes (by
 
 set log /var/log/monit.log             # log file path
