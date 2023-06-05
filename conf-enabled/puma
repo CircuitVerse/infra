@@ -1,0 +1,7 @@
+check process circuitverse-server
+  with pidfile /home/ubuntu/gsoc-work/tmp/pids/server.pid
+  start program = "/usr/bin/nohup /bin/bash -c 'cd /home/ubuntu/gsoc-work; PATH=$PATH:/usr/local/bin:/ home/ubuntu/.rbenv/bin RAILS_ENV=production bundle exec puma -C config/puma.rb>/home/ubuntu/gsoc-work/tmp/puma.out 2>/home/ubuntu/gsoc-work/tmp/puma.err </dev/null' &"
+  stop program  = "/bin/bash -c 'cd /home/ubuntu/gsoc-work && if [ -f tmp/pids/server.pid ]; then cat tmp/pids/server.pid && echo 'STOP' | xargs kill -9; rm tmp/pids/server.pid; fi'"
+  if totalmem > 300.0 MB for 5 cycles then restart
+  if cpu usage > 95% for 5 cycles then restart
+  group puma 
