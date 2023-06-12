@@ -1,0 +1,5 @@
+check process procodile
+  with pidfile /home/ubuntu/main/CircuitVerse/pids/procodile.pid
+  start program = "/bin/bash -c '/etc/monit/monit-scripts/procodile.sh start'"
+  stop program = "/bin/bash -c '/etc/monit/monit-scripts/procodile.sh stop'"
+  if does not exist then restart
