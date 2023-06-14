@@ -1,6 +1,0 @@
-check process sidekiq_01
-  with pidfile  /home/ubuntu/gsoc-work/tmp/pids/sidekiq.pid
-  start program = "/bin/sh -c 'cd /home/ubuntu/gsoc-workt; PATH=$PATH:/usr/local/bin:/ home/ubuntu/.rbenv/bin RAILS_ENV=production bundle exec sidekiq -e production -i 0 -P tmp/pids/sidekiq.pid >> log/sidekiq.log 2>&1 &'" as uid app_user and gid app_group with timeout 90 seconds
-  stop program = "/bin/sh -c 'cd /home/ubuntu/gsoc-workt; PATH=$PATH:/usr/local/bin:/ home/ubuntu/.rbenv/bin bundle exec sidekiqctl stop tmp/pids/sidekiq.pid'" as uid app_user and gid app_group with timeout 90 seconds
-  if totalmem is greater than 500 MB for 2 cycles then restart
-  group sidekiq
