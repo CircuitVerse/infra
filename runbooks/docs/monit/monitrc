@@ -1,4 +1,4 @@
-set daemon  120              # check services at 120 seconds intervals
+set daemon  120             # check services at 120 seconds intervals
 #   with start delay 240    # optional: delay the first check by 4-minutes (by
 
 set log /var/log/monit.log             # log file path
@@ -6,15 +6,18 @@ set log /var/log/monit.log             # log file path
 set httpd port 2812 and
      # use address 0.0.0.0  # only accept connections from localhost
      allow 0.0.0.0/0        # allow localhost to connect to the server and
-     allow 34.208.62.213
+     allow 34.208.62.213    # Change this to $HOST ip of ec2 instance
      allow 0.0.0.0/8
+	 # Change username:password
      allow admin:monit      # require user 'admin' with password 'monit'
      allow @monit           # allow users of group 'monit' to connect (rw)
      allow @users readonly
 
+# Log files
 set idfile /var/lib/monit/id
 set statefile /var/lib/monit/state
 
+# Mail Alerts
 set mailserver smtp.gmail.com port 587
      username "circuitverse" password "16digitsmtpswd" # if email is circuitverse@gmail.com
      using tls
@@ -25,6 +28,7 @@ set eventqueue
       basedir /var/lib/monit/events  # set the base directory where events will be stored
       slots 100                      # optionally limit the queue size
 
+# Host Statistics
 check system $HOST					 # check host machine
   if loadavg (1min) per core > 2 for 5 cycles then alert
   if loadavg (5min) per core > 1.5 for 10 cycles then alert
@@ -32,5 +36,6 @@ check system $HOST					 # check host machine
   if memory usage > 85% then alert
   if swap usage > 25% then alert
 
+# Include config. files
 include /etc/monit/conf.d/*
 include /etc/monit/conf-enabled/*

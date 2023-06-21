@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Change PATH to rvm
 export PATH=/home/ubuntu/.rbenv/shims:/home/ubuntu/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 cd /home/ubuntu/main/CircuitVerse
 
