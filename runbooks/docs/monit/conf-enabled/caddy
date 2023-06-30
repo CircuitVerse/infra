@@ -1,0 +1,4 @@
+check process caddy with pidfile /var/run/caddy.pid
+    start program = "/usr/bin/caddy start"
+    stop program = "/usr/bin/caddy stop"
+    if cpu usage > 90% for 5 cycles then restart
