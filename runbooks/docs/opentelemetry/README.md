@@ -4,20 +4,15 @@ CircuitVerse utilises OpenTelemetry using Jaeger and New Relic.
 
 ## Jaeger & New Relic Service
 
-
+Refer to [OTEL-setup](https://github.com/CircuitVerse/CircuitVerse/tree/master/.otel) for detailed guide.
 
 ## Summary
 
-The primary goal of this system is to aid in understanding system behaviour and diagnosis of latency.
-
-Jaeger stores traces consisting of spans, which provide a fine-grained execution trace of the execution of a single request, through multiple layers of RPCs.
-This allows engineers to understand the full end-to-end flow.
-
+The core objective of this service is to assist in comprehending system behavior and diagnosing latency issues. Jaeger stores traces that consist of spans, offering a detailed execution trace of a single request. This aids in comprehending the complete end-to-end flow.
 
 ## Architecture
 
-The architecture of Jaeger is documented in [the Jaeger
-docs](https://www.jaegertracing.io/docs/latest/architecture/).
+The architecture of Jaeger is documented in [the Jaeger docs](https://www.jaegertracing.io/docs/latest/architecture/).
 
 Here is a diagram of how it is deployed in our infrastructure:
 
@@ -26,23 +21,10 @@ Here is a diagram of how it is deployed in our infrastructure:
 The configuration we are running consists of:
 
 - Collector: Running as docker container, this component receives spans from agents.
-- Jaeger-all-in-one: Running in Kubernetes, this component queries Elasticsearch and
-  provides the user-facing UI for Jaeger.
+- Jaeger-all-in-one: Running as docker container, provides the user-facing UI for Jaeger.
  
-Elasticsearch: This is the storage backend for the Jaeger system. We run a
-  dedicated Elasticsearch cluster for Jaeger in production.
-
-The primary tuning parameter in distributed tracing systems is sampling rate.
-
-
-## Deployment
-
-
-## Setup/Configuration
-
-Refer to [OTEL-setup](https://github.com/CircuitVerse/CircuitVerse/tree/master/.otel)
-
 ## Links to further Documentation
 
-- [Jaeger](https://www.jaegertracing.io/docs/latest/)
 - [OpenTelemetry](https://opentelemetry.io/)
+- [Jaeger](https://www.jaegertracing.io/docs/latest/)
+- [New Relic OTEL docs](https://docs.newrelic.com/docs/more-integrations/open-source-telemetry-integrations/opentelemetry/get-started/opentelemetry-set-up-your-app/)

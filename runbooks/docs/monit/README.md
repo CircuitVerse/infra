@@ -19,9 +19,9 @@ Monit monitors following services on our Server:
 - Caddy Webserver
 - Procodile
 
-Configuration files for each service is present in the [conf-enabled](./conf-enabled) folder.
+Configuration files for  present in the [conf-enabled](./conf-enabled) folder.
 
-2. After placing all the monit configuration files and editing the monitrc file, restart monit daemon. 
+2. After placing all the monit configuration files and editing the monitrc file, restart monit daemon.
 
 ```bash
 sudo monit reload
@@ -29,7 +29,8 @@ sudo systemctl restart monit
 brew services restart monit
 ```
 
-Monit daemon checks for all these services 2 mins(by default), this can be changed in [monitrc](./monitrc)
+Monit daemon checks for all these services every 2 mins(by default), this can be changed in [monitrc](./monitrc)
+
 `set daemon 120`
 
 Monit dashboard can be accessed at [http://localhost:2812](http://localhost:2812)
@@ -45,12 +46,12 @@ set httpd port 2812 and
 
 ## Alerting
 
-Alerts are sent using SMTP in the [monitrc](/monitrc) file.
+Alerts are sent using SMTP protocol.
 In order to use Gmail SMTP mail server you must have [2FA enabled](https://support.google.com/accounts/answer/185839?hl=en&co=GENIE.Platform%3DAndroid) for the Google Account.
 
 Next step is to create to create a new google [app password](https://support.google.com/mail/answer/185833?hl=en).
 
-On creating this replace your email address and the 16 digit password obtained after creating the Gmail SMTP app and add it to the [monitrc](./monitrc) file as shown below:
+After creating a new app, replace your email address and the 16 digit password obtained after creating the Gmail SMTP app and add it to the [monitrc](./monitrc) file as shown below:
 
 ```bash
 # Mail Alerts
