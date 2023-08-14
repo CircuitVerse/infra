@@ -1,16 +1,7 @@
 # Cloudflare
 
-Cloudflare provides a web application firewall (WAF), domain name system
-(DNS), and content delivery network (CDN) for the following zones:
+Cloudflare provides a web application firewall (WAF) and CDN for [circuitverse.org](https://circuitverse.org) with primary usecase being to prevent DDoS attacks.
 
-gitlab.com
-staging.gitlab.com
-gitlab.net
+## Status Page
 
-- Cloudflare Statuspage
-Run a traceroute from the Cloudflare network
-
-- Add uptime.circuitverse.org
-
-
-
+[uptime.circuitverse.org](https://uptime.circuitverse.org)

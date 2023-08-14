@@ -1,7 +1,5 @@
 # CircuitVerse Runbooks
 
-[[_TOC_]]
-
 ## Suggested Runbook Structure
 
 Runbooks should be the main source of truth for maintaining a service. This

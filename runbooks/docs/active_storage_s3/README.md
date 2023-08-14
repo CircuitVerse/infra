@@ -1,10 +1,10 @@
-# Running ActiveStorage on AWS S3
+# Using ActiveStorage on AWS S3
 
-### Configuring Credentials
+## Configuring Credentials
 
 Add credentials of `circuitverse-images-dev` to your enviornment(either in shell profile or in .env file)
 
-NOTE: If you are using your own S3 bucket for development, you need to edit `region` and `bucket` field in 
+NOTE: If you are using your own S3 bucket for development, you must edit `region` and `bucket` field in 
 [config/storage.yml](https://github.com/CircuitVerse/CircuitVerse/blob/master/config/storage.yml)
 
 ```bash
@@ -24,7 +24,13 @@ vim ~/.zshrc
 source ~/.zshrc
 ```
 
-#### Interacting with S3 bucket using aws cli
+Use `amazon_dev` in development enviornment for ActiveStorage [config/enviornments/development.rb](https://github.com/CircuitVerse/CircuitVerse/blob/master/config/environments/development.rb) 
+
+```bash
+config.active_storage.service = :amazon_dev
+```
+
+## Interacting with S3 using AWS cli
 
 Set up AWS credentials, Access key and secret access key.
 
@@ -47,3 +53,6 @@ aws s3 rm s3://circuitverse-images-dev/1orgi1an1hgp3es4nx8x5nf7hrjl
 
 For more cli commands refer official AWS docs [here](https://docs.aws.amazon.com/cli/latest/userguide/cli-services-s3-commands.html#using-s3-commands-listing-buckets)
 
+## Additional Resources
+
+- [Rails Guide ActiveStorage Setup](https://guides.rubyonrails.org/active_storage_overview.html#setup)
