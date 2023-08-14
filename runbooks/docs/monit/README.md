@@ -23,7 +23,7 @@ Monit monitors following services on our Server:
 
 # Alerting
 
-Alerts are sent using SMTP, to the mail address mentioned in the [monitrc](/link-to-monitrc) file.
+Alerts are sent using SMTP, to the mail address mentioned in the [monitrc](/monitrc) file.
 
 # Summary
 

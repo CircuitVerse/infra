@@ -1,5 +1,31 @@
 # CircuitVerse Runbooks
 
+[[_TOC_]]
+
+## Suggested Runbook Structure
+
+Runbooks should be the main source of truth for maintaining a service. This
+means we need to document all necessary information about a service here. On the
+other hand, runbooks should be a concise list of actions without distracting
+with too many information.
+
+```
+  docs/
+    <service-name>/
+      README.md         
+      <runbook-1>.md
+      <runbook-2>.md
+```
+
+## Overview
+
+This folder is containing a documentation directory for each service as defined
+in the [service catalog](../services/service-catalog.yml). Documentation not
+belonging to a specific service can be found in the directory
+[uncategorized](uncategorized/).
+
+**Please do not add directories at the top level which are not matching a
+service name in the service catalog! Put them under uncategorized/ instead.**
 
 ## Suggested Runbook Structure
 
@@ -19,4 +45,108 @@ template](https://gitlab.com/gitlab-com/gl-infra/readiness/-/blob/master/.gitlab
       <runbook-2>.md
 ```
 
+### README.md
 
+The `README.md` for each service should give background information helpful
+for understanding and operating it. It should contain the following sections, as
+required by the [service readiness review
+template](https://gitlab.com/gitlab-com/gl-infra/readiness/-/blob/master/.gitlab/issue_templates/service_readiness.md) (see there for details):
+
+```
+[[_TOC_]]
+
+# Summary
+
+# Architecture
+
+# Performance
+
+# Scalability
+
+# Availability
+
+# Durability
+
+# Security/Compliance
+
+# Monitoring/Alerting
+
+# Links to further Documentation
+```
+
+### Runbooks
+
+Runbooks are instructions for the execution of a manual task. Several runbooks
+can be contained in one document or each runbook can be in it's own file. The
+main points to consider are readability, if the runbook is easy to find (naming
+of file or runbook header) and that the runbook can be linked to from an alert.
+
+General principles: runbooks should be
+
+* as short and concise as possible
+* avoid duplication of information - link to README.md for general information
+* complete enough to be executed without further research
+* service runbook structured using the [service overview template](template-service-overview.md), to make it easy to navigate
+* alert playbook structured using the [alert playbook template](template-alert-playbook.md), to make it easy to navigate
+
+#### Suggested Runbook Layout
+
+Runbooks are most often used to mitigate issues / react to alerts. Therefore
+runbooks should have a "Troubleshooting" section simply structured by describing
+symptom, cause (use the alertname if possible) and solution and a "Maintenance"
+section for other general maintenance tasks.
+
+```
+[[_TOC_]]
+
+# Troubleshooting
+
+## Symptom: CPU Saturation Alert
+
+You got a CPU saturation alert...
+
+### Cause A: User is doing too many request
+
+A user is making too many requests.
+
+Identifyable by:
+
+* List of Alerts
+* List of metrics
+* List of log searches
+* ...
+
+#### Solution
+
+Block the user:
+
+* steps
+* to
+* block
+* the user
+
+### Cause B: DDOS Attack
+
+Identifyable by:
+
+* List of alerts
+* List of metrics
+* List of log searches
+* ...
+
+#### Solution
+
+<Cloudflare DDOS runbook link>
+
+# Maintenance
+
+## Execute a failover
+
+[...]
+
+## Restore from backup
+
+[...]
+
+
+```
