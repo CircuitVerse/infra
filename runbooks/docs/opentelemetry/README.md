@@ -7,16 +7,21 @@
 # Jaeger & New Relic Service
 
 * [Service Overview](https://dashboards.gitlab.net/d/jaeger-main/jaeger-overview)
+
 * **Alerts**: <https://alerts.gitlab.net/#/alerts?filter=%7Btype%3D%22jaeger%22%2C%20tier%3D%22inf%22%7D>
 * **Label**: gitlab-com/gl-infra/production~"Service::Jaeger"
 
+## Summary
+
+The primary goal of this system is to aid in understanding system behaviour and diagnosis of latency.
+
+Jaeger stores traces consisting of spans, which provide a fine-grained execution trace of the execution of a single request, through multiple layers of RPCs.
+This allows engineers to understand the full end-to-end flow.
+
+
 # Architecture
 
-## Logging
-
-* [Jaeger](TBD)
-
-<!-- END_MARKER -->
+![otel-arch.png](./otel-arch.png)
 
 ## Summary
 
@@ -49,6 +54,8 @@ Here is a diagram of how it is deployed in our infrastructure:
 
 ![jaeger architecture diagram](img/jaeger_arch.png)
 
+![otel-arch.png](./otel-arch.png)
+
 The configuration we are running consists of:
 
 * [labkit](https://gitlab.com/gitlab-org/labkit) and
@@ -76,6 +83,8 @@ traffic is instrumented.
 
 This gives us a lever with which to manage overhead and capacity demands, in
 particular storage.
+
+
 
 ## Performance
 
@@ -251,12 +260,6 @@ The Jaeger core services, collector and query, are managed through the Jaeger
 Operator, and their config lives in
 [tanka-deployments])(<https://gitlab.com/gitlab-com/gl-infra/k8s-workloads/tanka-deployments>).
 
-### Elasticsearch
-
-Elasticsearch configuration is managed in [the runbooks
-repo](https://gitlab.com/gitlab-com/runbooks/-/tree/master/elastic) and applied
-by CI. Index and shard settings can be configured there.
-
 ## Ownership
 
 The primary ownership of the Jaeger service lies with SRE Observability.
@@ -266,7 +269,5 @@ The primary ownership of the Jaeger service lies with SRE Observability.
 * [Jaeger](https://www.jaegertracing.io/docs/latest/)
 * [Jaeger Operator](https://www.jaegertracing.io/docs/latest/operator/)
 * [Distributed Tracing - development guidelines](https://docs.gitlab.com/ee/development/distributed_tracing.html)
-* [Dapper, a Large-Scale Distributed Systems Tracing Infrastructure](https://research.google/pubs/pub36356/)
-* [OpenTracing](https://opentracing.io/)
 * [OpenTelemetry](https://opentelemetry.io/)
 
